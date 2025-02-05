@@ -14,6 +14,9 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
 import edu.wpi.first.wpilibj.Joystick;
+
+import java.nio.channels.Channel;
+
 import com.fasterxml.jackson.databind.ser.std.CalendarSerializer;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
@@ -49,6 +52,8 @@ Spark frontRightSpark = new Spark(8);
 Spark frontLeftSpark= new Spark(9);
 
 SparkMax shooter = new SparkMax(4, MotorType.kBrushless);  // right side
+SparkMax arm = new SparkMax(2, MotorType.kBrushless);
+
 
 XboxController jDriver = new XboxController(0);
 XboxController jDriver2Controller = new XboxController(2);
@@ -115,97 +120,103 @@ if(1< timer.get() && timer.get() <2){
     }
 
 //-------------------------------------------------------------------------
-
 if(0< timer.get() && timer.get() <2){
-  rearLeftSpark.set(.5);
-  rearRightSpark.set(.5);
-  frontLeftSpark.set(.5);
-  frontRightSpark.set(.5);
-}
-  if(timer.get()<2){
-    rearLeftSpark.set(0);
-    rearRightSpark.set(0);
-    frontLeftSpark.set(0);
-    frontRightSpark.set(0);
- }
+  rearLeftSpark.set (.4);
+  rearRightSpark.set(.4);
+  frontRightSpark.set(.4);
+  frontLeftSpark.set(.4);  }   
+
+  if (timer.get()>2) {
+  rearLeftSpark.set (0);
+  rearRightSpark.set(0);
+  frontRightSpark.set(0);
+   frontLeftSpark.set(0); }
+
+   if(2< timer.get() && timer.get() <3){
+    rearLeftSpark.set (-.4);
+    rearRightSpark.set(-.4);
+    frontRightSpark.set(.4);
+    frontLeftSpark.set(.4);  }   
   
-if(2< timer.get() && timer.get() <3){
-  frontRightSpark.set(.5);
-  rearRightSpark.set(.5);
-  frontLeftSpark.set(-.5);
-  rearLeftSpark.set(-.5);
-}
+    if (timer.get()>3) {
+    rearLeftSpark.set (0);
+    rearRightSpark.set(0);
+    frontRightSpark.set(0);
+     frontLeftSpark.set(0); }
+  
+     if(3< timer.get() && timer.get() <5){
+    rearLeftSpark.set (.4);
+    rearRightSpark.set(.4);
+    frontRightSpark.set(.4);
+    frontLeftSpark.set(.4);  }   
+  
 
-if(timer.get()<3){
-  frontLeftSpark.set(0);
-  rearLeftSpark.set(0);
-  frontRightSpark.set(0);
-  rearRightSpark.set(0);
-}
+    else if(4< timer.get() && timer.get() <5){
 
-if(3< timer.get() && timer.get() <5){
-  frontLeftSpark.set(.5);
-  frontRightSpark.set(.5);
-  rearLeftSpark.set(.5);
-  rearRightSpark.set(.5);
-}
-else if(3< timer.get() && timer.get() <5){
-  shooter.set(.5);
-}
+      arm.set(-1);
+    }
 
-
-if(timer.get()<5){
-  frontLeftSpark.set(0);
-  frontRightSpark.set(0);
-  rearLeftSpark.set(0);
-  rearRightSpark.set(0);
-  shooter.set(0);
-}
+    if (timer.get()>5) {
+    rearLeftSpark.set (0);
+    rearRightSpark.set(0);
+    frontRightSpark.set(0);
+     frontLeftSpark.set(0); 
+    arm.set(0);
+  }
+  
+     
+      
 
 
 
-if(5< timer.get() && timer.get() <6){
-  frontRightSpark.set(.5);
-  rearLeftSpark.set(.5);
-  frontLeftSpark.set(-.5);
-  rearRightSpark.set(-.5);
-}
+     if(5< timer.get() && timer.get() <7){
+      rearLeftSpark.set (-.4);
+      rearRightSpark.set(.4);
+      frontRightSpark.set(-.4);
+      frontLeftSpark.set(.4);  }   
+    
+      if (timer.get()>7) {
+      rearLeftSpark.set (0);
+      rearRightSpark.set(0);
+      frontRightSpark.set(0);
+       frontLeftSpark.set(0); }
+     
+       if(7< timer.get() && timer.get() <9){
+        rearLeftSpark.set (-.4);
+        rearRightSpark.set(-.4);
+        frontRightSpark.set(-.4);
+        frontLeftSpark.set(-.4);  }   
+      
+          else if(8< timer.get() && timer.get() <9){
 
-if(timer.get()<6){
-  frontLeftSpark.set(0);
-  frontRightSpark.set(0);
-  rearLeftSpark.set(0);
-  rearRightSpark.set(0);
-}
+          arm.set(1);
+        }
 
-if(6< timer.get() && timer.get() <8){
-  frontLeftSpark.set(-.5);
-  frontRightSpark.set(-.5);
-  rearLeftSpark.set(-.5);
-  rearRightSpark.set(-.5);
-}
+        if (timer.get()>9) {
+        rearLeftSpark.set (0);
+        rearRightSpark.set(0);
+        frontRightSpark.set(0);
+         frontLeftSpark.set(0);
+        arm.set(0); }
 
-if(timer.get()<8){
-  frontLeftSpark.set(0);
-  frontRightSpark.set(0);
-  rearLeftSpark.set(0);
-  rearRightSpark.set(0);
-}
 
-if(8< timer.get() && timer.get() <9){
-  frontRightSpark.set(.5);
-  rearRightSpark.set(.5);
-  frontLeftSpark.set(-.5);
-  rearLeftSpark.set(-.5);
-}
+       
+         
 
-if(timer.get()<9){
-  frontLeftSpark.set(0);
-  rearLeftSpark.set(0);
-  frontRightSpark.set(0);
-  rearRightSpark.set(0);
-}
 
+
+         if(9< timer.get() && timer.get() <10){
+          rearLeftSpark.set (-.4);
+          rearRightSpark.set(-.4);
+          frontRightSpark.set(.4);
+          frontLeftSpark.set(.4);  }   
+        
+          if (timer.get()>10) {
+          rearLeftSpark.set (0);
+          rearRightSpark.set(0);
+          frontRightSpark.set(0);
+           frontLeftSpark.set(0);}
+  
 
 
 //-----------------------------------------------------------------------------
@@ -215,26 +226,23 @@ if(timer.get()<9){
             frontRightSpark.set(.4);
             frontLeftSpark.set(.4);  }   
       
-            if (timer.get()>11.7) {
+            if (timer.get()>11.5) {
             rearLeftSpark.set (0);
             rearRightSpark.set(0);
             frontRightSpark.set(0);
              frontLeftSpark.set(0);
       
          }
+
    
-    if(12< timer.get() && timer.get() <13){
+    else if(12< timer.get() && timer.get() <13){
      rearRightSpark.set(.4);
             frontRightSpark.set(.4);
        }
        if (timer.get()>13) {
        rearRightSpark.set(0);
             frontRightSpark.set(0);}
-    else if(13< timer.get() && timer.get() <14){
-      rearLeftSpark.set (.6);
-             rearRightSpark.set(.6);
-            frontRightSpark.set(.6);
-             frontLeftSpark.set(.6);  }   
+      
       
             if (timer.get()>14) {
             rearLeftSpark.set (0);
