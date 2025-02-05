@@ -1,0 +1,234 @@
+if (0< timer.get() && timer.get() <3.5){
+    arm.setVoltage(-3);
+     arm2.setVoltage(3);
+  } else if (timer.get()>3.5) {
+    arm.setVoltage(0);
+     arm2.setVoltage(0);
+    }
+if (3< timer.get() && timer.get() <5){
+   shooter.setVoltage(-12);
+     shooter2.setVoltage(12);
+   if (timer.get() >4){
+     intake.setVoltage(5);
+    }
+ } else if (timer.get()>5) {
+    shooter.setVoltage(0);
+    shooter2.setVoltage(0);
+    intake.setVoltage(0);
+  }
+ if(5< timer.get() && timer.get() <6.5){
+   rearLeftSpark.set (.4);
+    rearRightSpark.set(.4);
+   frontRightSpark.set(.4);
+    frontLeftSpark.set(.4);}
+
+ else if(6.5< timer.get() && timer.get() <8){
+rearLeftSpark.set (-.4);
+    rearRightSpark.set(-.4);
+   frontRightSpark.set(-.4);
+    frontLeftSpark.set(-.4);  }    
+if(6< timer.get() && timer.get() <7){
+           intake.setVoltage(5);}
+  
+   if (timer.get()>8) {
+   rearLeftSpark.set (0);
+   rearRightSpark.set(0);
+   frontRightSpark.set(0);
+    frontLeftSpark.set(0);
+   intake.setVoltage(0);
+}
+  if (9< timer.get() && timer.get() <9.5){
+     intake.setVoltage(-1);}
+else if (timer.get()>11) {
+    intake.setVoltage(0);}
+    if (9< timer.get() && timer.get() <11){
+   shooter.setVoltage(-12);
+     shooter2.setVoltage(12);
+   if (timer.get() >10.5){
+     intake.setVoltage(2);
+    }
+ } else if (timer.get()>11) {
+    shooter.setVoltage(0);
+    shooter2.setVoltage(0);
+    intake.setVoltage(0);}
+  if(11< timer.get() && timer.get() <12){
+   rearLeftSpark.set (.4);
+    rearRightSpark.set(.4);
+   frontRightSpark.set(.4);
+    frontLeftSpark.set(.4);}
+   if (timer.get()>12) {
+   rearLeftSpark.set (0);
+   rearRightSpark.set(0);
+   frontRightSpark.set(0);
+    frontLeftSpark.set(0);}}
+
+
+    if (0< timer.get() && timer.get() <2.5){
+        arm.setVoltage(-4);
+         arm2.setVoltage(4);
+      } else if (timer.get()>2.5) {
+        arm.setVoltage(0);
+         arm2.setVoltage(0);
+        }
+    if (2< timer.get() && timer.get() <4){
+       shooter.setVoltage(-12);
+         shooter2.setVoltage(12);
+       if (timer.get() >3){
+         intake.setVoltage(5);
+        }
+     } else if (timer.get()>4) {
+        shooter.setVoltage(0);
+        shooter2.setVoltage(0);
+        intake.setVoltage(0);
+      }
+     if(4< timer.get() && timer.get() <5){
+       rearLeftSpark.set (.6);
+        rearRightSpark.set(.6);
+       frontRightSpark.set(.6);
+        frontLeftSpark.set(.6);}
+    
+     else if(5< timer.get() && timer.get() <6){
+ rearLeftSpark.set (-.6);
+        rearRightSpark.set(-.6);
+       frontRightSpark.set(-.6);
+        frontLeftSpark.set(-.6);  }    
+   if(5.5< timer.get() && timer.get() <6.5){
+               intake.setVoltage(5);}
+      
+       if (timer.get()>6.5) {
+       rearLeftSpark.set (0);
+       rearRightSpark.set(0);
+       frontRightSpark.set(0);
+        frontLeftSpark.set(0);
+       intake.setVoltage(0);
+}
+      if (8< timer.get() && timer.get() <8.5){
+         intake.setVoltage(-1);}
+ else if (timer.get()>11) {
+        intake.setVoltage(0);}
+        if (8< timer.get() && timer.get() <10){
+       shooter.setVoltage(-12);
+         shooter2.setVoltage(12);
+       if (timer.get() >9.5){
+         intake.setVoltage(2);
+        }
+     } else if (timer.get()>10) {
+        shooter.setVoltage(0);
+        shooter2.setVoltage(0);
+        intake.setVoltage(0);}
+      if(10< timer.get() && timer.get() <10.5){
+       rearLeftSpark.set (.4);
+        rearRightSpark.set(.4);
+       frontRightSpark.set(.4);
+        frontLeftSpark.set(.4);}
+       if (timer.get()>10.5) {
+       rearLeftSpark.set (0);
+       rearRightSpark.set(0);
+       frontRightSpark.set(0);
+        frontLeftSpark.set(0);}
+      if(10< timer.get() && timer.get() <11){
+       rearLeftSpark.set (-.6);
+        rearRightSpark.set(.6);
+       frontRightSpark.set(-.6);
+        frontLeftSpark.set(.6);}
+       if (timer.get()>11) {
+       rearLeftSpark.set (0);
+       rearRightSpark.set(0);
+       frontRightSpark.set(0);
+        frontLeftSpark.set(0);}
+      else if(11< timer.get() && timer.get() <11.2){
+ rearLeftSpark.set (.4);
+        rearRightSpark.set(.4);
+       frontRightSpark.set(.4);
+        frontLeftSpark.set(.4);  }    
+   if(11< timer.get() && timer.get() <11.5){
+               intake.setVoltage(7);}
+      
+       if (timer.get()>11.5) {
+       rearLeftSpark.set (0);
+       rearRightSpark.set(0);
+       frontRightSpark.set(0);
+        frontLeftSpark.set(0);
+       intake.setVoltage(0);
+      
+      }
+     if(11.5< timer.get() && timer.get() <12.5){
+       rearLeftSpark.set (.6);
+        rearRightSpark.set(-.6);
+       frontRightSpark.set(.6);
+        frontLeftSpark.set(-.6);}
+       if (timer.get()>12.5) {
+       rearLeftSpark.set (0);
+       rearRightSpark.set(0);
+       frontRightSpark.set(0);
+        frontLeftSpark.set(0);}
+      
+         else if(12.5< timer.get() && timer.get() <13.5){
+ rearLeftSpark.set (-.6);
+        rearRightSpark.set(-.6);
+       frontRightSpark.set(-.6);
+        frontLeftSpark.set(-.6);  }    
+      
+       if (timer.get()>13.5) {
+       rearLeftSpark.set (0);
+       rearRightSpark.set(0);
+       frontRightSpark.set(0);
+        frontLeftSpark.set(0);
+}
+      if (12< timer.get() && timer.get() <14){
+         intake.setVoltage(-1);}
+ else if (timer.get()>12.5) {
+        intake.setVoltage(0);}
+        if (12.3< timer.get() && timer.get() <14.5){
+       shooter.setVoltage(-12);
+         shooter2.setVoltage(12);
+       if (timer.get() >14.2){
+         intake.setVoltage(12);
+        }
+     } else if (timer.get()>15) {
+        shooter.setVoltage(0);
+        shooter2.setVoltage(0);
+        intake.setVoltage(0);}
+      }
+
+      \
+
+
+
+
+
+
+
+
+      if (8< timer.get() && timer.get() <10.5){
+        arm.setVoltage(-4);
+         arm2.setVoltage(4);
+      } else if (timer.get()>2.5) {
+        arm.setVoltage(0);
+         arm2.setVoltage(0);
+        }
+    if (10< timer.get() && timer.get() <12){
+       shooter.setVoltage(-12);
+         shooter2.setVoltage(12);
+       if (timer.get() >11){
+         intake.setVoltage(5);
+        }
+     } else if (timer.get()>12) {
+        shooter.setVoltage(0);
+        shooter2.setVoltage(0);
+        intake.setVoltage(0);
+      }
+      else if(13< timer.get() && timer.get() <14){
+        rearLeftSpark.set (.6);
+               rearRightSpark.set(.6);
+              frontRightSpark.set(.6);
+               frontLeftSpark.set(.6);  }   
+        
+              if (timer.get()>14) {
+              rearLeftSpark.set (0);
+              rearRightSpark.set(0);
+              frontRightSpark.set(0);
+               frontLeftSpark.set(0);
+              intake.setVoltage(0);
+        
+           }}
