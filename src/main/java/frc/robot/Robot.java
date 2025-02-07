@@ -51,12 +51,11 @@ Spark rearRightSpark = new Spark(7);
 Spark frontRightSpark = new Spark(8);
 Spark frontLeftSpark= new Spark(9);
 
-SparkMax shooter = new SparkMax(4, MotorType.kBrushless);  // right side
 SparkMax arm = new SparkMax(2, MotorType.kBrushless);
 
 
-XboxController jDriver = new XboxController(0);
-XboxController jDriver2Controller = new XboxController(2);
+XboxController jDriver = new XboxController(1);
+XboxController jDriver2Controller = new XboxController(0);
 
 
   /**
@@ -273,23 +272,13 @@ if(0< timer.get() && timer.get() <2){
     var wheelSpeeds = kinematics.toWheelSpeeds(speeds);
 
    
-
-    if (jDriver2Controller.getRawButton(8)) {
-      shooter.setVoltage(-12);
+    if (jDriver2Controller.getRawButton(1)) {
+      arm.setVoltage(-3);}
+      else if (jDriver2Controller.getRawButton(3)) {
+      arm.setVoltage(3);
     } else{
-      shooter.set(0);
+      arm.set(0);
     }
-
-    
-
-   // if (jDriver2Controller.getRawButton(1)) {
-     // intakemove.setVoltage(-3);}
-    //  else if (jDriver2Controller.getRawButton(3)) {
-     // intakemove.setVoltage(3);
-   // } else{
-    //  intakemove.set(0);
-  //  }
-
     frontLeftSpark.set(wheelSpeeds.frontLeftMetersPerSecond);
     frontRightSpark.set(wheelSpeeds.frontRightMetersPerSecond);
     rearLeftSpark.set(wheelSpeeds.rearLeftMetersPerSecond);
