@@ -10,15 +10,19 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 
 import java.nio.channels.Channel;
 
 import com.fasterxml.jackson.databind.ser.std.CalendarSerializer;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkRelativeEncoder;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.config.SparkBaseConfig;
@@ -52,6 +56,11 @@ Spark frontRightSpark = new Spark(8);
 Spark frontLeftSpark= new Spark(9);
 
 SparkMax arm = new SparkMax(2, MotorType.kBrushless);
+
+SparkMax roller = new SparkMax(5, MotorType.kBrushless);
+SparkMax hatch = new SparkMax(4, MotorType.kBrushless);
+RelativeEncoder hatchEncoder = hatch.getEncoder();
+PIDController hatchPid = new PIDController(2, 0, 0);
 
 
 XboxController jDriver = new XboxController(1);
@@ -272,12 +281,52 @@ if(0< timer.get() && timer.get() <2){
     var wheelSpeeds = kinematics.toWheelSpeeds(speeds);
 
    
-    if (jDriver2Controller.getRawButton(1)) {
-      arm.setVoltage(-3);}
-      else if (jDriver2Controller.getRawButton(3)) {
-      arm.setVoltage(3);
+    if (jDriver2Controller.getYButton()) {
+      arm.set(-12);}
+      else if (jDriver2Controller.getBButton()) {
+      arm.set(12);
     } else{
       arm.set(0);
+    }
+
+    // if (jDriver2Controller.getRawButton(2)) {
+    //   hatch.set(-2);}
+    //   else if (jDriver2Controller.getRawButton(4)) {
+    //   hatch.set(2);
+    // } else{
+    //   hatch.set(0);
+    // }
+
+    double hatchSetpointRotations = SmartDashboard.getNumber("HatchSetpoint", 0);
+    SmartDashboard.putNumber("HatchPosition", hatchEncoder.getPosition());
+    SmartDashboard.putNumber("HatchVelocity", hatchEncoder.getVelocity());
+    SmartDashboard.putData("HatchPID", hatchPid);
+
+    if(jDriver2Controller.getLeftBumperButton()) {
+      hatchEncoder.setPosition(0);
+    }
+
+    if(jDriver2Controller.getRightBumperButton()) {
+      double hatchPosition = hatchEncoder.getPosition();
+      double hatchVoltage = hatchPid.calculate(hatchPosition, hatchSetpointRotations);
+      if(hatchPosition <= 0 && hatchVoltage < 0) {
+        hatchVoltage = 0;
+      }
+
+      if(hatchPosition >= 0.4 && hatchVoltage > 0) {
+        hatchVoltage = 0;
+      }
+
+      hatch.setVoltage(hatchVoltage);
+
+    }
+
+    if (jDriver2Controller.getRawButton(2)) {
+      roller.set(-1);}
+      else if (jDriver2Controller.getRawButton(4)) {
+      roller.set(1);
+    } else{
+      roller.set(0);
     }
     frontLeftSpark.set(wheelSpeeds.frontLeftMetersPerSecond);
     frontRightSpark.set(wheelSpeeds.frontRightMetersPerSecond);
