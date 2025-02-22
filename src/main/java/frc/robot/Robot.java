@@ -59,6 +59,7 @@ SparkMax arm = new SparkMax(2, MotorType.kBrushless);
 
 SparkMax roller = new SparkMax(5, MotorType.kBrushless);
 SparkMax hatch = new SparkMax(4, MotorType.kBrushless);
+SparkMaxConfig hatchConfig = new SparkMaxConfig();
 RelativeEncoder hatchEncoder = hatch.getEncoder();
 PIDController hatchPid = new PIDController(2, 0, 0);
 
@@ -82,7 +83,8 @@ XboxController jDriver2Controller = new XboxController(0);
     frontRightSpark.setInverted(true);
     frontLeftSpark.setInverted(false);
 
-   
+   hatchConfig.idleMode(IdleMode.kBrake);
+   hatch.configure(hatchConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
 
     CameraServer.startAutomaticCapture();
   }
@@ -281,21 +283,21 @@ if(0< timer.get() && timer.get() <2){
     var wheelSpeeds = kinematics.toWheelSpeeds(speeds);
 
    
-    if (jDriver2Controller.getYButton()) {
-      arm.set(-12);}
-      else if (jDriver2Controller.getBButton()) {
-      arm.set(12);
+
+    if (jDriver2Controller.getXButton()) {
+      arm.set(-4);}
+      else if (jDriver2Controller.getAButton()) {
+      arm.set(4);
     } else{
       arm.set(0);
     }
-
-    // if (jDriver2Controller.getRawButton(2)) {
-    //   hatch.set(-2);}
-    //   else if (jDriver2Controller.getRawButton(4)) {
-    //   hatch.set(2);
-    // } else{
-    //   hatch.set(0);
-    // }
+    if (jDriver2Controller.getLeftTriggerAxis() == 1) {
+      hatch.set(.2);}
+      else if (jDriver2Controller.getRightTriggerAxis() == 1) {
+      hatch.set(-12);
+    } else{
+      hatch.set(0);
+    }
 
     double hatchSetpointRotations = SmartDashboard.getNumber("HatchSetpoint", 0);
     SmartDashboard.putNumber("HatchPosition", hatchEncoder.getPosition());
@@ -306,24 +308,24 @@ if(0< timer.get() && timer.get() <2){
       hatchEncoder.setPosition(0);
     }
 
-    if(jDriver2Controller.getRightBumperButton()) {
-      double hatchPosition = hatchEncoder.getPosition();
-      double hatchVoltage = hatchPid.calculate(hatchPosition, hatchSetpointRotations);
-      if(hatchPosition <= 0 && hatchVoltage < 0) {
-        hatchVoltage = 0;
-      }
+    // if(jDriver2Controller.getRightBumperButton()) {
+    //   double hatchPosition = hatchEncoder.getPosition();
+    //   double hatchVoltage = hatchPid.calculate(hatchPosition, hatchSetpointRotations);
+    //   if(hatchPosition <= 0 && hatchVoltage < 0) {
+    //     hatchVoltage = 0;
+    //   }
 
-      if(hatchPosition >= 0.4 && hatchVoltage > 0) {
-        hatchVoltage = 0;
-      }
+    //   if(hatchPosition >= 0.4 && hatchVoltage > 0) {
+    //     hatchVoltage = 0;
+    //   }
 
-      hatch.setVoltage(hatchVoltage);
+    //   hatch.setVoltage(hatchVoltage);
 
-    }
+    // }
 
-    if (jDriver2Controller.getRawButton(2)) {
+    if (jDriver2Controller.getYButton()) {
       roller.set(-1);}
-      else if (jDriver2Controller.getRawButton(4)) {
+      else if (jDriver2Controller.getBButton()) {
       roller.set(1);
     } else{
       roller.set(0);
