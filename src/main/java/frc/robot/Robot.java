@@ -278,7 +278,7 @@ if(0< timer.get() && timer.get() <2){
   @Override
   public void teleopPeriodic() {
     
-    var speeds = new ChassisSpeeds(-jDriver.getLeftY()/1.5, -jDriver.getLeftX()/1.5, -jDriver.getRightX()/1.5);
+    var speeds = new ChassisSpeeds(-jDriver.getLeftY()/1.5, jDriver.getLeftX()/1.5, -jDriver.getRightX()/1.5);
 
     var wheelSpeeds = kinematics.toWheelSpeeds(speeds);
 
